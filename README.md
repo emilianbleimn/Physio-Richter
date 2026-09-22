@@ -20,6 +20,8 @@ Facebook-Seite der Praxis weiter. Alles Belegte kommt deshalb von dort.
 | Spiegeltherapie, Bobath für Erwachsene | Beiträge vom 1. / 8. / 15. Juli und 6. August |
 | „Von 100 % empfohlen (5 Bewertungen)“ | Bewertungsangabe des Profils |
 | Porträtfoto | Profilbild der Facebook-Seite |
+| Telefon 0160 95434511 | von der Praxis bestätigt |
+| Sprechzeiten Mo/Mi/Do 08–16, Di/Fr 08–13 | von der Praxis bestätigt |
 
 Die Postleitzahl **64823** ist ergänzt (Groß-Umstadt) und sollte trotzdem
 gegengelesen werden.
@@ -27,16 +29,15 @@ gegengelesen werden.
 **Noch offen** — auf der Seite orange und gepunktet unterstrichen, damit beim
 Durchsehen sofort auffällt, was fehlt:
 
-- Telefonnummer, E-Mail-Adresse, Sprechzeiten
+- E-Mail-Adresse
 - Kassenzulassung, Privat- und Selbstzahlerleistungen, Preise
 - Hinweise zum ersten Termin (Versichertenkarte, Zuzahlung, Ausfallregelung)
 - Ein persönlicher Absatz von Sandra Richter im Abschnitt „Über die Praxis“
 
-Zur Telefonnummer: In Branchenverzeichnissen stehen **zwei verschiedene**
-Einträge für die Praxis — einer mit `+49 160 95434511` an der Höchster Straße 20,
-einer mit `06078 7821872` an einer Adresse „Am Gewerbepark 21“. Welcher stimmt,
-lässt sich von außen nicht entscheiden, deshalb steht auf der Seite bewusst
-keine Nummer. Bitte bei der Praxis erfragen.
+Zur Telefonnummer: In Branchenverzeichnissen standen zwei verschiedene Einträge
+für die Praxis — einer mit `0160 95434511` an der Höchster Straße 20, einer mit
+`06078 7821872` an einer Adresse „Am Gewerbepark 21“. Die Praxis hat die erste
+Nummer bestätigt; der zweite Eintrag ist veraltet oder falsch.
 
 Die Beschreibungstexte der Therapieformen und die Abschnitte „Ablauf“ und
 „Über die Praxis“ sind fachlich übliche Formulierungen, aber **Entwürfe** — sie
@@ -56,8 +57,12 @@ gehören von Sandra Richter gegengelesen, bevor die Seite online geht.
 * Eine einzige Akzentfarbe, keine Verläufe, keine Schmuckelemente. Die Seite
   soll beim ersten Blick beantworten, was die Praxis macht und wo sie ist.
 
-Das Farbschema folgt der Systemeinstellung; der Schalter in der Kopfzeile
-überstimmt sie und merkt sich die Wahl pro Gerät.
+Das helle Theme ist der Standard — bewusst unabhängig von der
+Systemeinstellung des Geräts: Wer ein dunkles Betriebssystem nutzt, soll die
+Praxisseite trotzdem zuerst hell sehen. Dunkel ist über den Schalter in der
+Kopfzeile erreichbar und wird pro Gerät gemerkt. Ein kurzes Skript im Kopf der
+Seite setzt eine gespeicherte Wahl noch vor dem ersten Anstrich, damit für
+diese Besucher nichts aufblitzt.
 
 ### Barrierefreiheit
 
@@ -72,6 +77,15 @@ und dunkel, mobil und am Schreibtisch:
   `scope` in der Sprechzeitentabelle, beschriftete Formularfelder
 - `prefers-reduced-motion` schaltet Bewegungen ab
 - Ohne JavaScript bleibt die Seite vollständig lesbar und bedienbar
+
+### Strukturierte Daten
+
+Adresse, Telefonnummer, Sprechzeiten und das Leistungsangebot stehen zusätzlich
+als JSON-LD (`schema.org/Physiotherapy`) im Kopf der Seite. Damit finden
+Suchmaschinen und Kartendienste die Öffnungszeiten maschinenlesbar vor, statt
+sie aus dem Fließtext raten zu müssen. Ändern sich die Zeiten, muss der Block
+**mitgeändert werden** — er steht direkt unter der Stylesheet-Zeile in
+`index.html`.
 
 ### Schriften liegen auf dem eigenen Server
 
@@ -94,7 +108,7 @@ ein Link auf OpenStreetMap.
    nur eine Bestätigung an. Für den Livegang muss es an ein Postfach oder ein
    Buchungstool angebunden werden — mitsamt Verschlüsselung und einem echten
    Link zur Datenschutzerklärung an der Einwilligung.
-3. Die offenen Angaben aus der Liste oben eintragen.
+3. Die restlichen offenen Angaben aus der Liste oben eintragen (E-Mail, Preise).
 4. `og:url` in `index.html` auf die endgültige Adresse setzen und ein
    `og:image` ergänzen (1200 × 630 px), damit beim Versenden des Links eine
    Vorschaukarte erscheint. Das Profilfoto ist mit 200 × 200 px dafür zu klein.

@@ -7,8 +7,12 @@
   var root = document.documentElement;
 
   /* ---------- Design: hell / dunkel ----------
-     Standard ist die Systemeinstellung. Der Schalter überstimmt sie und
-     merkt sich die Wahl pro Gerät. */
+     Hell ist der Standard — bewusst unabhängig von der Systemeinstellung des
+     Geräts. Wer ein dunkles Betriebssystem nutzt, soll die Praxisseite
+     trotzdem zuerst hell sehen. Dunkel gibt es nur über den Schalter in der
+     Kopfzeile, und diese Wahl wird pro Gerät gemerkt.
+     Das Setzen des Attributs beim Laden erledigt bereits das kurze Skript im
+     Kopf der Seite; hier kommt nur die Bedienung dazu. */
   var SUN = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/>'
           + '<path d="M12 2.4v2.2M12 19.4v2.2M4.2 12H2M22 12h-2.2M6.1 6.1L4.6 4.6'
           + 'M19.4 19.4l-1.5-1.5M17.9 6.1l1.5-1.5M4.6 19.4l1.5-1.5"/></svg>';
@@ -16,16 +20,11 @@
            + '<path d="M20.5 14.2A8.6 8.6 0 019.8 3.5a8.6 8.6 0 1010.7 10.7z"/></svg>';
 
   var toggle = document.getElementById('theme-toggle');
-  var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  var BAR = { light: '#F7F5F1', dark: '#0D1817' };
 
   function store(key, value) {
     try { localStorage.setItem(key, value); } catch (e) { /* Privatmodus o. Ä. */ }
-  }
-  function read(key) {
-    try { return localStorage.getItem(key); } catch (e) { return null; }
-  }
-  function systemTheme() {
-    return darkQuery && darkQuery.matches ? 'dark' : 'light';
   }
 
   function paintToggle(theme) {
@@ -35,34 +34,17 @@
     toggle.setAttribute('aria-label', dark ? 'Zu hellem Design wechseln' : 'Zu dunklem Design wechseln');
   }
 
-  var saved = read('psr-theme');
-  if (saved === 'dark' || saved === 'light') {
-    root.setAttribute('data-theme', saved);
-    paintToggle(saved);
-  } else {
-    // Ohne gespeicherte Wahl folgt die Seite dem Betriebssystem …
-    if (systemTheme() === 'dark') root.setAttribute('data-theme', 'dark');
-    paintToggle(systemTheme());
-    // … und auch einem späteren Wechsel dort.
-    if (darkQuery && darkQuery.addEventListener) {
-      darkQuery.addEventListener('change', function () {
-        if (read('psr-theme')) return;
-        var next = systemTheme();
-        if (next === 'dark') root.setAttribute('data-theme', 'dark');
-        else root.removeAttribute('data-theme');
-        paintToggle(next);
-      });
-    }
-  }
+  // Ohne Attribut ist die Seite hell - so liefert sie das Stylesheet aus.
+  paintToggle(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
 
   if (toggle) {
     toggle.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme') || systemTheme();
-      var next = current === 'dark' ? 'light' : 'dark';
-      if (next === 'dark') root.setAttribute('data-theme', 'dark');
-      else root.setAttribute('data-theme', 'light');
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
       store('psr-theme', next);
       paintToggle(next);
+      // Die Browserleiste auf Mobilgeräten mitführen
+      if (themeMeta) themeMeta.content = BAR[next];
     });
   }
 

@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Physiotherapie Sandra Richter – Groß-Umstadt</title>
 <meta name="description" content="Praxis für Physiotherapie in Groß-Umstadt. Schwerpunkt neurologische Rehabilitation – Bobath, Vojta, Spiegeltherapie – dazu Orthopädie, Manuelle Therapie, Krankengymnastik und K-Taping. Barrierefreie Praxisräume.">
-<meta name="theme-color" content="#F7F5F1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0D1817" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F7F5F1">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
@@ -22,6 +21,102 @@
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Strukturierte Daten: damit Suchmaschinen und Kartendienste Adresse,
+     Telefonnummer und Sprechzeiten maschinenlesbar vorfinden. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physiotherapy",
+  "name": "Physiotherapie Sandra Richter",
+  "url": "https://emilianbleimn.github.io/Physio-Richter/",
+  "telephone": "+49 160 95434511",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Höchster Straße 20",
+    "postalCode": "64823",
+    "addressLocality": "Groß-Umstadt",
+    "addressRegion": "Hessen",
+    "addressCountry": "DE"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "08:00",
+      "closes": "16:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Tuesday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "13:00"
+    }
+  ],
+  "isAccessibleForFree": false,
+  "publicAccess": true,
+  "availableService": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Neurologische Rehabilitation"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Bobath-Therapie"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Vojta-Therapie"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Orthopädie"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Manuelle Therapie"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Kiefergelenkbehandlung (CMD)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Krankengymnastik"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "K-Taping"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/people/Physiotherapie-Sandra-Richter/100054603872337/"
+  ]
+}
+</script>
+
+<script>
+  /* Hell ist der Standard. Nur eine zuvor getroffene Wahl schaltet um - und
+     zwar vor dem ersten Anstrich, damit nichts aufblitzt. main.js laeuft mit
+     defer und waere dafuer zu spaet. */
+  try {
+    var t = localStorage.getItem('psr-theme');
+    if (t === 'dark' || t === 'light') {
+      document.documentElement.setAttribute('data-theme', t);
+      if (t === 'dark') {
+        document.querySelector('meta[name="theme-color"]').content = '#0D1817';
+      }
+    }
+  } catch (e) { /* Privatmodus o. Ä. */ }
+</script>
 </head>
 <body>
 
@@ -99,9 +194,9 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn--solid" href="#kontakt">
+          <a class="btn btn--solid" href="tel:+4916095434511">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-phone"></use></svg>
-            Termin vereinbaren
+            0160 95434511
           </a>
           <a class="btn btn--ghost" href="#leistungen">Leistungen ansehen</a>
         </div>
@@ -124,12 +219,12 @@
           <div class="info-row">
             <svg aria-hidden="true"><use href="#i-phone"></use></svg>
             <dt>Telefon</dt>
-            <dd><span class="tbd">Telefonnummer ergänzen</span></dd>
+            <dd><a href="tel:+4916095434511">0160 95434511</a></dd>
           </div>
           <div class="info-row">
             <svg aria-hidden="true"><use href="#i-clock"></use></svg>
             <dt>Sprechzeiten</dt>
-            <dd><span class="tbd">Zeiten ergänzen</span> · Termine nach Vereinbarung</dd>
+            <dd>Mo, Mi, Do 08:00–16:00<br>Di, Fr 08:00–13:00</dd>
           </div>
           <div class="info-row">
             <svg aria-hidden="true"><use href="#i-access"></use></svg>
@@ -370,7 +465,7 @@
           <div class="info-row">
             <svg aria-hidden="true"><use href="#i-phone"></use></svg>
             <dt>Telefon</dt>
-            <dd><span class="tbd">Telefonnummer ergänzen</span></dd>
+            <dd><a href="tel:+4916095434511">0160 95434511</a></dd>
           </div>
 
           <div class="info-row">
@@ -385,8 +480,11 @@
             <dd>
               <table class="hours">
                 <tbody>
-                  <tr><th scope="row">Montag – Donnerstag</th><td><span class="tbd">Uhrzeit ergänzen</span></td></tr>
-                  <tr><th scope="row">Freitag</th><td><span class="tbd">Uhrzeit ergänzen</span></td></tr>
+                  <tr><th scope="row">Montag</th><td>08:00–16:00</td></tr>
+                  <tr><th scope="row">Dienstag</th><td>08:00–13:00</td></tr>
+                  <tr><th scope="row">Mittwoch</th><td>08:00–16:00</td></tr>
+                  <tr><th scope="row">Donnerstag</th><td>08:00–16:00</td></tr>
+                  <tr><th scope="row">Freitag</th><td>08:00–13:00</td></tr>
                   <tr><th scope="row">Samstag &amp; Sonntag</th><td>geschlossen</td></tr>
                 </tbody>
               </table>
