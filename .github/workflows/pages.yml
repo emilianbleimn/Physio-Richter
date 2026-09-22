@@ -1,0 +1,41 @@
+name: Seite veroeffentlichen
+
+on:
+  # Der Standard-Branch des Repositories. Die Umgebung "github-pages" laesst
+  # per Branch-Schutzregel nur die als Pages-Quelle eingestellte Branch
+  # deployen - ein Lauf von einer anderen Branch wird schon am Umgebungs-Gate
+  # abgewiesen, ohne einen einzigen Schritt und ohne Log.
+  push:
+    branches: [claude/vibrant-galileo-pjard1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Hinweis: Pages muss einmalig unter Settings > Pages mit
+      # Source = "GitHub Actions" aktiviert werden. Der GITHUB_TOKEN eines
+      # Workflows darf eine Pages-Site deployen, aber nicht erstmalig anlegen
+      # ("Resource not accessible by integration"), daher kein enablement hier.
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
